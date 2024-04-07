@@ -7,10 +7,10 @@ class Shape:
 
 
 class Circle(Shape): # класс круга
-    def __init__(self, radius):
+    def __init__(self, radius: float):
         self.radius = radius
 
-    def calculate_area(self):
+    def calculate_area(self) -> float:
         return pi * self.radius ** 2
     
 
@@ -21,12 +21,17 @@ class Triangle(Shape): # класс треугольника
         self.b = sides[1]
         self.c = sides[2]
 
-        if self.a + self.b < self.c:
+        if (self.a + self.b < self.c or 
+            not(
+                self.a + self.b > self.c and
+                self.b + self.c > self.a and
+                self.a + self.c > self.b
+            )):
             raise ValueError("Such triangle does not exist")
         
 
     def calculate_area(self) -> float:
-        p = self.sides / 2
+        p = sum(self.sides) / 2
         return sqrt(p*(p-self.a)*(p-self.b)*(p-self.c))
     
     def is_right(self) -> bool:
@@ -44,7 +49,7 @@ class Rectangle(Shape): # класс прямоугольника
     
 
 
-def calculate_area_all(*args):
+def calculate_area(*args):
     if len(args) == 1:
         return Circle(*args).calculate_area()
     
@@ -55,5 +60,4 @@ def calculate_area_all(*args):
         return Triangle([*args]).calculate_area()
     
     return ValueError("No such shape!")
-
 
