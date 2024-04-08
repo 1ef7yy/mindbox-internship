@@ -59,5 +59,7 @@ def calculate_area(*args):
     elif len(args) == 3:
         return Triangle([*args]).calculate_area()
     
-    return ValueError("No such shape!")
+    # если ни в один из случаев не попадаем проваливаемся в ошибку 
+
+    raise ValueError("No such shape!") 
 
