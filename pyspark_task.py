@@ -22,7 +22,7 @@ category_df = spark.createDataFrame([
 )
 
 product_df = spark.createDataFrame([
-    (1, "roduct 1"),
+    (1, "product 1"),
     (2, "product 2"),
     (3, "product 3"),
     (4, "product 4"),
